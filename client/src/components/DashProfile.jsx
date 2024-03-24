@@ -22,9 +22,10 @@ import {
   deleteUserSuccess,
   signOutSuccess,
 } from "../redux/user/userSlice";
+import { Link } from "react-router-dom";
 
 function DashProfile() {
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -225,12 +226,23 @@ function DashProfile() {
           type="submit"
           gradientDuoTone="purpleToBlue"
           outline
-          className="mb-5"
+          disabled={loading || imageFileUploading}
         >
-          Update
+          {loading ? "Loading..." : "Update"}
         </Button>
+        {currentUser.isAdmin && (
+          <Link to="/create-post">
+            <Button
+              type="button"
+              gradientDuoTone="purpleToPink"
+              className="w-full"
+            >
+              Create a Post
+            </Button>
+          </Link>
+        )}
       </form>
-      <div className="text-red-500 flex justify-between">
+      <div className="text-red-500 flex justify-between my-4">
         <span
           className="cursor-pointer hover:bg-red-200 p-2 rounded-lg"
           onClick={() => setShowModal(true)}
