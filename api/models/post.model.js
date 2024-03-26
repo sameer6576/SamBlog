@@ -20,7 +20,7 @@ const postSchema = new mongoose.Schema(
       default:
         "https://www.travelpayouts.com/blog/wp-content/uploads/2021/02/blog-images.png",
     },
-    catergory: {
+    category: {
       type: String,
       default: "uncategorized",
     },
