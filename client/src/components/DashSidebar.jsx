@@ -8,7 +8,6 @@ import { signOutSuccess } from "../redux/user/userSlice";
 
 export default function DashSidebar() {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
   const location = useLocation();
   const [tab, setTab] = useState("");
   const dispatch = useDispatch();
@@ -65,6 +64,7 @@ export default function DashSidebar() {
               active={tab === "signout"}
               icon={HiArrowSmRight}
               onClick={() => handleSignOut()}
+              as="div"
             >
               Sign Out
             </Sidebar.Item>
